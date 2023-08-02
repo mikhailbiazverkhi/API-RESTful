@@ -94,17 +94,15 @@ $app->delete('/api/delete/{id}', function (Request $request, Response $response,
     $id = $args['id'];
 
     $article = new Article();
-    //if
-    $article->delete($id); //{
-
-    $data = ['message' => 'Article deleted successfully'];
-    $response->getBody()->write(json_encode($data));
-    return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
-    // } else {
-    //     $data = ['message' => 'Failed to delete article'];
-    //     $response->getBody()->write(json_encode($data));
-    //     return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
-    // }
+    if ($article->delete($id)) {
+        $data = ['message' => 'Article deleted successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to delete article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
 });
 
 //Définition d'une route pour mettre à jour un article
@@ -120,17 +118,15 @@ $app->put('/api/update/{id}', function (Request $request, Response $response, $a
 
     $article = new Article();
 
-    // if (
-    $article->update($id, $titre, $image, $categorie, $contenu); //) {
-    $data = ['message' => 'Article updated successfully'];
-    $response->getBody()->write(json_encode($data));
-    return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
-    // } else {
-    //     $data = ['message' => 'Failed to update article'];
-    //     $response->getBody()->write(json_encode($data));
-    //     $response->withHeader('Content-Type', 'application/json')->withStatus(500);
-    // }
-
+    if ($article->update($id, $titre, $image, $categorie, $contenu)) {
+        $data = ['message' => 'Article updated successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to update article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
 });
 
 // Run the Slim app

@@ -13,7 +13,7 @@ class Article
 
     public function create($titre, $image, $categorie, $contenu)
     {
-        Database::addArticle($titre, $image, $categorie, $contenu);
+        return Database::addArticle($titre, $image, $categorie, $contenu);
     }
 
     public function read($id = null)
@@ -27,12 +27,12 @@ class Article
 
     public function update($id, $titre, $image, $categorie, $contenu)
     {
-        Database::updateArticle($id, $titre, $image, $categorie, $contenu);
+        return Database::updateArticle($id, $titre, $image, $categorie, $contenu);
     }
 
     public function delete($id)
     {
-        Database::deleteArticle($id);
+        return Database::deleteArticle($id);
     }
 
 }
