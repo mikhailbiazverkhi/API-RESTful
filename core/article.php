@@ -2,39 +2,37 @@
 
 class Article
 {
+    //// private $conn;
+    //// private $table = 'article';
 
-    private $conn;
-    // private $table = 'article';
+    // public $id;
+    // public $titre;
+    // public $image;
+    // public $categorie;
+    // public $contenu;
 
-    public $id;
-    public $titre;
-    public $image;
-    public $categorie;
-    public $contenue;
-
-    // public function __construct($db_conn)
-    // {
-    //     $this->conn = $db_conn;
-    // }
-
-    public function create()
+    public function create($titre, $image, $categorie, $contenu)
     {
-
+        Database::addArticle($titre, $image, $categorie, $contenu);
     }
 
-    public function read()
+    public function read($id = null)
     {
-        return Database::getArticles();
+        if ($id === null) {
+            return Database::getArticles();
+        } else {
+            return Database::getArticle($id);
+        }
     }
 
-    public function update()
+    public function update($id, $titre, $image, $categorie, $contenu)
     {
-
+        Database::updateArticle($id, $titre, $image, $categorie, $contenu);
     }
 
-    public function delete()
+    public function delete($id)
     {
-
+        Database::deleteArticle($id);
     }
 
 }

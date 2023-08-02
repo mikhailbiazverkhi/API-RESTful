@@ -56,9 +56,10 @@ class Database
     public static function getArticle($id)
     {
         $sql = "SELECT * FROM article WHERE id='$id'";
-        $stmt = query($sql);
+        // $stmt = query($sql);
         try {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return query(($sql));
         } catch (PDOException $ex) {
             throw $ex;
         }
@@ -78,7 +79,6 @@ class Database
 
     public static function deleteArticle($id)
     {
-
         $sql = "DELETE FROM article WHERE id='$id'";
 
         try {
