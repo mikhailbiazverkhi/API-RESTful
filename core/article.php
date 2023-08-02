@@ -1,7 +1,5 @@
 <?php
 
-require_once '../core/dao.php';
-
 class Article
 {
 
@@ -14,10 +12,10 @@ class Article
     public $categorie;
     public $contenue;
 
-    public function __construct($db_conn)
-    {
-        $this->conn = $db_conn;
-    }
+    // public function __construct($db_conn)
+    // {
+    //     $this->conn = $db_conn;
+    // }
 
     public function create()
     {
