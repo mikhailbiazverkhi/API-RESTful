@@ -7,13 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
 require_once __DIR__ . '/vendor/autoload.php';
-
 require_once __DIR__ . '/core/initialize.php';
-
-// require_once __DIR__ . '/includes/config.php';
-
-// require_once __DIR__ . '/core/article.php';
-// require_once __DIR__ . '/core/dao.php';
 
 $container = new Container();
 
