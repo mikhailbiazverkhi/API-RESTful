@@ -8,10 +8,12 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+require_once __DIR__ . '/core/initialize.php';
+
 // require_once __DIR__ . '/includes/config.php';
 
-require_once __DIR__ . '/core/article.php';
-require_once __DIR__ . '/core/dao.php';
+// require_once __DIR__ . '/core/article.php';
+// require_once __DIR__ . '/core/dao.php';
 
 $container = new Container();
 
@@ -124,6 +126,90 @@ $app->put('/api/update/{id}', function (Request $request, Response $response, $a
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     } else {
         $data = ['message' => 'Failed to update article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
+});
+
+//Définition d'une route pour mettre à jour un Titre d'un article
+$app->patch('/api/update_title/{id}', function (Request $request, Response $response, $args) {
+
+    $id = $args['id'];
+
+    $data = $request->getParsedBody();
+    $titre = $data['titre'] ?? '';
+
+    $article = new Article();
+
+    if ($article->update_title($id, $titre)) {
+        $data = ['message' => 'Article title updated successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to update title of the article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
+});
+
+//Définition d'une route pour mettre à jour une Image d'un article
+$app->patch('/api/update_image/{id}', function (Request $request, Response $response, $args) {
+
+    $id = $args['id'];
+
+    $data = $request->getParsedBody();
+    $image = $data['image'] ?? '';
+
+    $article = new Article();
+
+    if ($article->update_image($id, $image)) {
+        $data = ['message' => 'Article image updated successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to update image of the article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
+});
+
+//Définition d'une route pour mettre à jour une Categorie d'un article
+$app->patch('/api/update_categorie/{id}', function (Request $request, Response $response, $args) {
+
+    $id = $args['id'];
+
+    $data = $request->getParsedBody();
+    $categorie = $data['categorie'] ?? '';
+
+    $article = new Article();
+
+    if ($article->update_categorie($id, $categorie)) {
+        $data = ['message' => 'Article categorie updated successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to update categorie of the article'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
+    }
+});
+
+//Définition d'une route pour mettre à jour un Contenu d'un article
+$app->patch('/api/update_contenu/{id}', function (Request $request, Response $response, $args) {
+
+    $id = $args['id'];
+
+    $data = $request->getParsedBody();
+    $contenu = $data['contenu'] ?? '';
+
+    $article = new Article();
+
+    if ($article->update_contenu($id, $contenu)) {
+        $data = ['message' => 'Article contenu updated successfully'];
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+    } else {
+        $data = ['message' => 'Failed to update contenu of the article'];
         $response->getBody()->write(json_encode($data));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(500);
     }

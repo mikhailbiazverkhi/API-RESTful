@@ -2,7 +2,6 @@
 
 $db_user = 'root';
 $db_password = '$Mike1q2w3e4R';
-
 $db_name = 'tp2_blog_db';
 
 $conn = new PDO('mysql:host=localhost; dbname=' . $db_name . ';charset=utf8', $db_user, $db_password);
