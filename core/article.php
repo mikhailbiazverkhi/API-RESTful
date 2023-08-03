@@ -2,14 +2,6 @@
 
 class Article
 {
-    //// private $conn;
-    //// private $table = 'article';
-
-    // public $id;
-    // public $titre;
-    // public $image;
-    // public $categorie;
-    // public $contenu;
 
     public function create($titre, $image, $categorie, $contenu)
     {
