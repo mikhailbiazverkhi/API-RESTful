@@ -209,5 +209,21 @@ $app->patch('/api/update_contenu/{id}', function (Request $request, Response $re
     }
 });
 
+//gérer les entrées utilisateurs.
+$app->add(function ($request, $handler) {
+    $response = $handler->handle($request); // Utilisation de handle() au lieu de $next()
+
+    $apiKey = $request->getQueryParams('apiKey');
+
+    if (!Auth::isValid($apiKey['apiKey'])) {
+        $unauthorizedResponse = new \Slim\Psr7\Response();
+
+        $unauthorizedResponse->getBody()->write("Unauthorized");
+        return $unauthorizedResponse->withStatus(401);
+    }
+
+    return $response;
+});
+
 // Run the Slim app
 $app->run();
