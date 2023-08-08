@@ -12,11 +12,16 @@ Transformation l'application backend existante (Plateforme du Blog vu dans le co
 * Ouvrir le projet "API RESTful" VS Code.
 ### Utilisation
 * Exécutez `php -S localhost:3000` pour démarrer l'application en Terminal du VS Code.
-* Connectez-vous à l'API à l'aide de Postman à l'aide de l'URI `http://localhost:3000/{api_endpoints}`.
+* Connectez-vous à l'API à l'aide de Postman à l'aide de l'URI `http://localhost:3000{api_endpoints}?apiKey={api_key}`.
+  * Vous pouvez utiliser deux apiKeys pour se connecter: 
+    * utilisateur: `?apiKey=user_key`
+    * administrateur: `?apiKey=admin_key`
+  * La liste d'API Endpoints ci-dessous
+* Exemple d'URI pour obtenir la liste de toutes les articles `http://localhost:3000/api/articles?apiKey=user_key`
 ### API Endpoints
 | Verbes HTTP | Endpoints | Action | Paramètres
 | --- | --- | --- | --- |
-| POST | /api/articles_create | Pour créer un nouvel article | Body / form-data: titre, image (url), categorie, contenu
+| POST | /api/articles_create | Pour créer un nouvel article | Headers / Content-Type : application/json. Body / JSON: {"titre", "image (url)", "categorie", "contenu"}
 | GET | /api/articles | Pour récupérer tous les articles |
 | GET | /api/articles/{id} | Pour récupérer l'article avec id |
 | PUT | /api/update/{id} | Pour mettre à jour tout l'article avec id | Headers / Content-Type : application/json. Body / JSON: {"titre", "image", "categorie", "contenu"}
